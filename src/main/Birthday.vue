@@ -1,11 +1,15 @@
 <template>
   <div class="birthday">
     <div class="scroll-text">
-      <p>生日快乐！</p>
+      <p>~~生日快乐~~</p>
       <br/>
-      <p>今天是你的生日，愿你在新的一岁里万事如意，心想事成！</p>
+      <p>今天是斯琴的生日哇，愿世间美好与你环环相扣</p>
     </div>
   </div>
+  <div class="imgs">
+
+  </div>
+  <img src="~@/assets/four.jpg" width="80%" height="70%"/>
 </template>
 
 <script>
@@ -18,6 +22,12 @@ export default {
 .birthday {
   text-align: center;
   padding: 20px;
+}
+
+.imgs {
+  background-image: url('~@/assets/logo.png');
+  width: 80%;
+  height: 70%;
 }
 
 .scroll-text {
