@@ -3,19 +3,63 @@
     <div class="scroll-text">
       <p>~~生日快乐~~</p>
       <br/>
-      <p>今天是斯琴的生日哇，愿世间美好与你环环相扣</p>
+      <p>愿世间美好与你环环相扣</p>
     </div>
   </div>
-  <div class="imgs">
-
+  <div>
+    {{ productList }}
   </div>
-  <img src="~@/assets/four.jpg" width="80%" height="70%"/>
+  <!-- <img src="~@/assets/logo.png" width="80%" height="70%"/> -->
 </template>
 
 <script>
+//import axios from 'axios'
+import fetch from 'node-fetch'
+
+// const instance = axios.create({
+//   baseURL: 'http://localhost:15008',
+//   timeout: 5000,
+// });
 export default {
-  name: 'BirthdayByW'
+  name: 'BirthdayByW',
+  data() {
+    return {
+      productList: []
+    }
+  },
+  mounted() {
+    this.test()
+  },
+
+  methods: {
+    test() {
+        const data = JSON.stringify({
+          "canteenId": 98
+        });
+        fetch('http://localhost:15008/internal/frontBoard/signProduct', {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: data
+          //mode: 'no-cors' //导致content-type只能传text/plain
+        })
+        .then(response => response.json())
+        .then(res => {
+                  this.productList = res;
+        });
+        // axios.post('http://localhost:15008/internal/frontBoard/signProduct', data, {
+        // headers: {
+        //   "Content-Type": "application/json"
+        // },
+        // //proxy: cors()
+        // }).then(res => {
+        //   this.productList = res.data;
+        // });
+    }
+  }
 }
+
 </script>
 
 <style scoped>
