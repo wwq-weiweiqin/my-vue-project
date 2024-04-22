@@ -20,7 +20,7 @@ export default {
     onMounted(() => {
       new Swiper('.swiper-container', {
         loop: true, // 循环模式选项
-        autoplay: {delay: 2000},
+        autoplay: {delay: 4000},
         pagination: {
           el: '.swiper-pagination',
         },
