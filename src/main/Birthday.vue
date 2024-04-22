@@ -1,57 +1,55 @@
 <template>
-  <div class="birthday">
-    <div class="scroll-text">
-      <p>~~生日快乐~~</p>
-      <br/>
-      <p>今天是斯琴的生日哇，愿世间美好与你环环相扣</p>
+  <div><p>~~欢迎来到美女养成记频道~~</p></div>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" v-for="(item,i) in images" :key="i"><img :src="item"/></div>
     </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
   </div>
-  <div class="imgs">
-
-  </div>
-  <img src="~@/assets/four.jpg" width="80%" height="70%"/>
 </template>
 
 <script>
+import { onMounted } from 'vue';
+import Swiper from 'swiper';   // 引入库
+import 'swiper/css/swiper.css'; // 引入样式文件，注意5和6版本的样式文件不一致
+
 export default {
-  name: 'BirthdayByW'
-}
+  name: 'birthdayWQ',
+  setup() {
+    onMounted(() => {
+      new Swiper('.swiper-container', {
+        loop: true, // 循环模式选项
+        autoplay: {delay: 2000},
+        pagination: {
+          el: '.swiper-pagination',
+        },
+      });
+    })
+  },
+  data() {
+    return {
+      images : [
+        require('@/assets/1.jpg'),
+        require('@/assets/2.jpg'),
+        require('@/assets/3.jpg')
+      ]
+    };
+  }
+};
 </script>
-
-<style scoped>
-.birthday {
-  text-align: center;
-  padding: 20px;
-}
-
-.imgs {
-  background-image: url('~@/assets/logo.png');
-  width: 80%;
-  height: 70%;
-}
-
-.scroll-text {
-  overflow: hidden;
-  white-space: nowrap;
-  position:relative;
+<style>
+.swiper-container {
   width: 100%;
-  height: 90px;
-  font-size: 20px;
-  border: 1px solid #000;
+  height: 50%;
+  border-radius: 10px;
 }
-
-.scroll-text p {
-  position: absolute;
-  width: 100%;
-  animation: scroll 10s linear infinite;
+.swiper-slide {
+    width: 100% !important;
 }
-
-@keyframes scroll {
-  0% {
-    transform: translateX(80%);
-  }
-  100% {
-    transform: translateX(-80%);
-  }
-}
+img {
+      width: 80%;
+      height: 100%;
+      object-fit: cover;
+    }
 </style>
